@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/addPatientFragment">
+
+    <fragment
+        android:id="@+id/patientDetailFragment"
+        android:name="com.example.patientcareapplication.PatientDetailFragment"
+        android:label="fragment_patient_detail"
+        tools:layout="@layout/fragment_patient_detail" >
+        <argument
+            android:name="newPatient"
+            app:argType="com.example.patientcareapplication.data.model.Patient"
+            />
+        <action
+            android:id="@+id/action_patientDetailFragment_to_addPatientFragment"
+            app:destination="@id/addPatientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="com.example.patientcareapplication.AddPatientFragment"
+        android:label="AddPatientFragment" >
+        <action
+            android:id="@+id/action_addPatientFragment_to_patientDetailFragment"
+            app:destination="@id/patientDetailFragment"
+            app:popUpTo="@id/addPatientFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_addPatientFragment_to_searchPatientFragment"
+            app:destination="@id/searchPatientFragment"
+            app:popUpTo="@id/addPatientFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPatientFragment"
+        android:name="com.example.patientcareapplication.SearchPatientFragment"
+        android:label="fragment_search_patient"
+        tools:layout="@layout/fragment_search_patient" >
+        <action
+            android:id="@+id/action_searchPatientFragment_to_individualPatientFragment"
+            app:destination="@id/individualPatientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/individualPatientFragment"
+        android:name="com.example.patientcareapplication.IndividualPatientFragment"
+        android:label="IndividualPatientFragment" >
+        <argument android:name="patient"
+            app:argType="com.example.patientcareapplication.data.model.Patient" />
+    </fragment>
+</navigation>
